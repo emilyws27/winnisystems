@@ -13,7 +13,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Add scroll effect to navbar
-let lastScroll = 0;
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
@@ -25,7 +24,11 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = 'none';
     }
     
-    lastScroll = currentScroll;
+    // Add parallax effect to hero background
+    const heroBackground = document.querySelector('.hero-bg');
+    if (heroBackground && currentScroll < window.innerHeight) {
+        heroBackground.style.transform = `translateY(${currentScroll * 0.5}px)`;
+    }
 });
 
 // Intersection Observer for fade-in animations
@@ -91,26 +94,19 @@ if (contactForm) {
     });
 }
 
-// Add parallax effect to hero background
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector('.hero-bg');
-    if (heroBackground && scrolled < window.innerHeight) {
-        heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-});
-
-// Animate stats counter on scroll
+console.log('WinniSystems - Future Forward AI & Technology Solutions');
 const animateCounter = (element, target, duration = 2000) => {
     let current = 0;
     const increment = target / (duration / 16);
+    const shouldAddPlus = element.textContent.includes('+');
+    
     const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
-            element.textContent = target + (target === 100 || target === 50 ? '+' : '');
+            element.textContent = target + (shouldAddPlus ? '+' : '');
             clearInterval(timer);
         } else {
-            element.textContent = Math.floor(current) + (target === 100 || target === 50 ? '+' : '');
+            element.textContent = Math.floor(current) + (shouldAddPlus ? '+' : '');
         }
     }, 16);
 };
@@ -122,11 +118,11 @@ const statsObserver = new IntersectionObserver((entries) => {
             entry.target.dataset.animated = 'true';
             const statNumbers = entry.target.querySelectorAll('.stat-number');
             statNumbers.forEach(stat => {
-                const text = stat.textContent;
-                if (text.includes('100')) {
-                    animateCounter(stat, 100);
-                } else if (text.includes('50')) {
-                    animateCounter(stat, 50);
+                const text = stat.textContent.trim();
+                const numMatch = text.match(/\d+/);
+                if (numMatch) {
+                    const targetValue = parseInt(numMatch[0], 10);
+                    animateCounter(stat, targetValue);
                 }
             });
         }
@@ -136,18 +132,6 @@ const statsObserver = new IntersectionObserver((entries) => {
 const statsSection = document.querySelector('.stats');
 if (statsSection) {
     statsObserver.observe(statsSection);
-}
-
-// Add cursor glow effect on hero section
-const hero = document.querySelector('.hero');
-if (hero) {
-    hero.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        
-        hero.style.setProperty('--mouse-x', `${x}px`);
-        hero.style.setProperty('--mouse-y', `${y}px`);
-    });
 }
 
 console.log('WinniSystems - Future Forward AI & Technology Solutions');

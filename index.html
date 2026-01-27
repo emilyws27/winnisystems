@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WinniSystems provides cutting-edge AI, machine learning, and technology solutions to small businesses. We offer web & app design, data analytics, and AI/ML services.">
     <title>WinniSystems - Future Forward AI & Technology Solutions</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -61,7 +62,7 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-label="Web and App Design">
                             <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
                             <line x1="8" y1="21" x2="16" y2="21"></line>
                             <line x1="12" y1="17" x2="12" y2="21"></line>
@@ -81,7 +82,7 @@
                 <div class="service-card featured">
                     <div class="featured-badge">Most Popular</div>
                     <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-label="AI and ML Solutions">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                             <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
                             <line x1="12" y1="22.08" x2="12" y2="12"></line>
@@ -100,7 +101,7 @@
 
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-label="Data Analytics">
                             <line x1="12" y1="1" x2="12" y2="23"></line>
                             <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                         </svg>
@@ -175,14 +176,14 @@
                     </p>
                     <div class="contact-details">
                         <div class="contact-item">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-label="Email">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                 <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
                             <span>contact@winnisystems.ai</span>
                         </div>
                         <div class="contact-item">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-label="Location">
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
@@ -193,16 +194,20 @@
                 <div class="contact-form-wrapper">
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
+                            <label for="name" class="sr-only">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
+                            <label for="email" class="sr-only">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Company Name">
+                            <label for="company" class="sr-only">Company Name</label>
+                            <input type="text" id="company" name="company" placeholder="Company Name">
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Tell us about your project" rows="5" required></textarea>
+                            <label for="message" class="sr-only">Tell us about your project</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your project" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-full">Send Message</button>
                     </form>
