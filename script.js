@@ -12,22 +12,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add scroll effect to navbar
+// Add scroll effect to navbar with optimized performance
 const navbar = document.querySelector('.navbar');
+let ticking = false;
 
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
-    } else {
-        navbar.style.boxShadow = 'none';
-    }
-    
-    // Add parallax effect to hero background
-    const heroBackground = document.querySelector('.hero-bg');
-    if (heroBackground && currentScroll < window.innerHeight) {
-        heroBackground.style.transform = `translateY(${currentScroll * 0.5}px)`;
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+            
+            // Add parallax effect to hero background
+            const heroBackground = document.querySelector('.hero-bg');
+            if (heroBackground && currentScroll < window.innerHeight) {
+                heroBackground.style.transform = `translateY(${currentScroll * 0.5}px)`;
+            }
+            
+            ticking = false;
+        });
+        
+        ticking = true;
     }
 });
 
@@ -63,6 +72,9 @@ document.querySelectorAll('.tech-item').forEach((item, index) => {
 });
 
 // Form submission handling
+const FORM_SUBMIT_DELAY = 1500;
+const BUTTON_RESET_DELAY = 3000;
+
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -84,17 +96,17 @@ if (contactForm) {
             // Reset form
             contactForm.reset();
             
-            // Reset button after 3 seconds
+            // Reset button after delay
             setTimeout(() => {
                 submitBtn.textContent = originalText;
                 submitBtn.style.background = '';
                 submitBtn.disabled = false;
-            }, 3000);
-        }, 1500);
+            }, BUTTON_RESET_DELAY);
+        }, FORM_SUBMIT_DELAY);
     });
 }
 
-console.log('WinniSystems - Future Forward AI & Technology Solutions');
+// Animate stats counter on scroll
 const animateCounter = (element, target, duration = 2000) => {
     let current = 0;
     const increment = target / (duration / 16);
@@ -110,6 +122,8 @@ const animateCounter = (element, target, duration = 2000) => {
         }
     }, 16);
 };
+
+console.log('WinniSystems - Future Forward AI & Technology Solutions');
 
 // Observe stats section
 const statsObserver = new IntersectionObserver((entries) => {
@@ -133,5 +147,3 @@ const statsSection = document.querySelector('.stats');
 if (statsSection) {
     statsObserver.observe(statsSection);
 }
-
-console.log('WinniSystems - Future Forward AI & Technology Solutions');
